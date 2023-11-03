@@ -1,6 +1,8 @@
+
+//Items for 
 const items = {
     "689145740844":{
-        name: "JavaScript Textbook", 
+        name: "JavaScript Textbook",
         price: 34.95
     },
 
@@ -27,58 +29,102 @@ const items = {
     price: 15.99
 
    }, 
+
    "036000214000": {
     name: "Kleenex",
     price: 3.99
 
    }, 
-   "": {
-    
+
+   "809693254156": {
+    name: "Hand Sanitizer",
+    price: 7.99
+   }, 
+
+   "036500060480": {
+    name: "Printer Paper",
+    price: 9.99
+   }, 
+
+   "085014561877": {
+    name: "Brush Pens",
+    price: 10.99
+   }, 
+
+   "X0032YGP2T": {
+    name: "Multiport Adapter",
+    price: 25.99
    }, 
    
-}
-
-const Sanitizer = {
-    name: "Hand Sanitizer",
-    number: 8809693254156,
-    price: 7.99
-}
-
-const Printer = {
-    name: "Printer Paper",
-    number: 036500060480,
-    price: 9.99
-}
-
-const Brush = {
-    name: "Brush Pens",
-    number: 085014561877,
-    price: 10.99
-}
-
-const Adapter = {
-    name: "Multiport Adapter",
-    number: "X0032YGP2T",
-    price: 25.99
-}
-
-const Scissors = {
+   "B07G6JT1XS": {
     name: "Scissors (20ct.)",
-    number: "B07G6JT1XS",
     price: 23.99
-}
-
-const ProgrammingTextbook = {
+   }, 
+   
+   "9780134682334": {
     name: "iOS Programming Textbook", 
-    number: 9780134682334,
     price: 119.99
-}
-
-const Notebook = {
+   }, 
+   
+   "718103230759": {
     name: "Spiral Notebook", 
-    number: 718103230759,
     price: 1.99
+   },
 }
 
-const pro_list = [Textbook, XeroxPaper, FirstAddKit, Pencils, Wipes, FaceMask, Kleenex, Sanitizer, Printer, Brush, Adapter, Scissors, ProgrammingTextbook, Notebook]
-console.log(pro_list[Notebook])
+
+
+const cartbutton = document.getElementById("add");
+const cart = [];
+const  total = document.getElementById("total");
+total * 9.25
+const barcrode = document.getElementById("barcodenum");
+const quantity = document.getElementById("quannum");
+  
+const div = document.getElementById("item");
+const item = document.getElementById("items");
+const price = document.getElementById("price");
+const q = document.getElementById("q");
+const list  = document.getElementById("list");
+
+function addToCart() {
+   
+    var barcodeNum = barcrode.value;
+    var quan = quantity.value;
+     var ip = document.createElement("p");
+    var di = document.createElement("div");
+    var button = document.createElement("button");
+    var total = document.createElement("h2");
+    
+    
+      
+    if (items.hasOwnProperty(barcodeNum)) {
+           console.log("DEBUG: New Checkout")
+           console.log("DEBUG: Items has been found: " + items.name)
+           console.log("DEBUG: BarcodeNum" + barcodeNum)
+           var price = document.createElement("p");
+           var product = document.createElement("p");
+           var quan = document.createElement("p");
+           price = items.price
+           product  = items.name
+           quan  = items.quan
+           console.log("DEBUG: Item Price: " + price) 
+           console.log("DEBUG: Item Name: " + product)
+           console.log("DEBUG: Item Quanity" + quan)
+    } else {
+        console.log("DEBUG: Items has NOT been found")
+    }
+     
+    ip.innerText = items.name;
+    console.log("DEBUG BarcodeNum: " + barcodeNum)
+    total.innerText = items.price
+    console.log(total)
+     
+
+    
+
+}
+
+console.log("DEBUG: " + cart)
+// console.log("DEBUG: " + barcodeNum.value);
+cartbutton.addEventListener("click", addToCart);

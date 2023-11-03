@@ -6,21 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout.com/en/shop </title>
     <link rel="stylesheet" href="styles.css">
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
     <script src="https://kit.fontawesome.com/af25c5ca7f.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <section>
         <div class="container">
-            <h1 class="title">
+            <h1 class="titles">
                 Secure Checkout
             </h1>
             <h2 class="subtitle">
-                Scan Product Barcode:  <input type="number" class="barcodenum">
+                Scan Product Barcode:  <input type="number" class="barcodenum" id="barcodenum">
             </h2>
-            <h2 class="quantity">Quantity: <input type="number" class="quannum"></h2>
+            <h2 class="quantity">Quantity: <input type="number" class="quannum" id="quannum"></h2>
 
-            <button class="add">Add to Cart</button>
+            <button class="add" id="add">Add to Cart</button>
 
         </div>
 
@@ -31,13 +31,14 @@
             <h1 class="title">
                 Cart
             </h1>
-                  <div class="item">
-                    <p>Item</p>
-                    <p>Price</p>
-                    <p>Quantity</p>
+                  <div class="item" id="item">
+                    <p id="items">Item</p>
+                    <p id="price">Price</p>
+                    <p id="q">Quantity</p>
                   </div>
+                  <div id="list"></div>
             
-            <h2 class="subtitle">Total: $</h2>
+            <h2 class="subtitle" id="total">Total: $</h2>
 
             <button class="add">Checkout</button>
 

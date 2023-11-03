@@ -9,7 +9,20 @@ body {
 
 .title {
  text-align: center;
+ 
+ 
+ 
 }
+
+.titles {
+    text-align: center;
+    border: 1px solid cornflowerblue;
+    background-color: cornflowerblue;
+    color: white;
+    height: 50px;
+    font-style: italic;
+}
+
 
 .subtitle {
     text-align: left;
