@@ -74,3 +74,21 @@ table {
 .cartcontainer {
     width: 100%;
 }
+
+
+
+
+.priceStyling {
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 5px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* p{
+    border: 1px solid black;
+} */

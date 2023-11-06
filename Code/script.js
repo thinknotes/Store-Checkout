@@ -93,8 +93,10 @@ function addToCart() {
     var quan = quantity.value;
      var ip = document.createElement("p");
     var di = document.createElement("div");
+    var listitem = document.createElement("div");
     var button = document.createElement("button");
     var total = document.createElement("h2");
+    var tdiv = document.getElementById("totaldiv");
     
     
       
@@ -102,17 +104,37 @@ function addToCart() {
            console.log("DEBUG: New Checkout")
            console.log("DEBUG: Items has been found: " + items.name)
            console.log("DEBUG: BarcodeNum" + barcodeNum)
+           let item = items[barcodeNum]
            var price = document.createElement("p");
            var product = document.createElement("p");
-           var quan = document.createElement("p");
-           price = items.price
-           product  = items.name
-           quan  = items.quan
-           console.log("DEBUG: Item Price: " + price) 
+           var cartquan = document.createElement("p");
+        //    var tp = document.createElement("h2");
+           product.classList.add("cartstyling");
+           price.classList.add("priceStyling");
+           price.innerText = item.price
+           product.innerText  = item.name
+           cartquan.innerText  = quan
+           total = item.price * quan
+           console.log("DEBUG: Item Price:  " + price) 
            console.log("DEBUG: Item Name: " + product)
-           console.log("DEBUG: Item Quanity" + quan)
+           console.log("DEBUG: Item Quanity  " + quan)
+           console.log("DEBUG: Total" + total)
+           di.append(product);
+           di.append(price);
+           di.append(quan);
+           di.classList.add("priceStyling")
+           list.append(di);
+           console.log(di);
+           console.log("DEBUG:  " + list);
+           di.style.border = "1px solid black";
+           di.style.borderRadius = "10px";
+          total.innerText = total
+           
+
+
     } else {
         console.log("DEBUG: Items has NOT been found")
+        notFound()
     }
      
     ip.innerText = items.name;
@@ -120,8 +142,10 @@ function addToCart() {
     total.innerText = items.price
     console.log(total)
      
-
-    
+     
+    function notFound() {
+        alert("Item Has Not Been Found, Please Try Again!!")
+    }
 
 }
 
