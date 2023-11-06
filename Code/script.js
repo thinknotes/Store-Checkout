@@ -128,7 +128,7 @@ function addToCart() {
            console.log("DEBUG:  " + list);
            di.style.border = "1px solid black";
            di.style.borderRadius = "10px";
-          total.innerText = total
+           tdiv.innerText = "Total: $ " + total
            
 
 
