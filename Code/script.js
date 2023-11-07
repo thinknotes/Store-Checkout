@@ -76,8 +76,8 @@ const items = {
 
 const cartbutton = document.getElementById("add");
 const cart = [];
-const  total = document.getElementById("total");
-total * 9.25
+var  total = document.getElementById("total");
+// total * 9.25
 const barcrode = document.getElementById("barcodenum");
 const quantity = document.getElementById("quannum");
   
@@ -86,50 +86,65 @@ const item = document.getElementById("items");
 const price = document.getElementById("price");
 const q = document.getElementById("q");
 const list  = document.getElementById("list");
+const CaTaxRate = 9.25;
 
 function addToCart() {
    
     var barcodeNum = barcrode.value;
     var quan = quantity.value;
-     var ip = document.createElement("p");
+    var ip = document.createElement("p");
     var di = document.createElement("div");
     var listitem = document.createElement("div");
     var button = document.createElement("button");
-    var total = document.createElement("h2");
+    // var total = document.createElement("h2");
     var tdiv = document.getElementById("totaldiv");
-    
-    
+    var sub = document.getElementById("subtotal");
+    var allItems = cart.querySeclector
+   
+
+    for(let i = 0; i < allItems.length; i++) {
+        if (allItems[i] === cart) {
+
+        } else {
+
+        }
+    }
+     
       
     if (items.hasOwnProperty(barcodeNum)) {
-           console.log("DEBUG: New Checkout")
-           console.log("DEBUG: Items has been found: " + items.name)
-           console.log("DEBUG: BarcodeNum" + barcodeNum)
+
+
+
            let item = items[barcodeNum]
            var price = document.createElement("p");
            var product = document.createElement("p");
            var cartquan = document.createElement("p");
-        //    var tp = document.createElement("h2");
+           var grandTotal = document.createElement("h2");
+
+
            product.classList.add("cartstyling");
            price.classList.add("priceStyling");
            price.innerText = item.price
            product.innerText  = item.name
            cartquan.innerText  = quan
-           total = item.price * quan
-           console.log("DEBUG: Item Price:  " + price) 
-           console.log("DEBUG: Item Name: " + product)
-           console.log("DEBUG: Item Quanity  " + quan)
-           console.log("DEBUG: Total" + total)
+           total += parseFloat(item.price) * parseFloat(quan)
+           console.log(total)
+           grandTotal = total * (CaTaxRate);
+
+
            di.append(product);
            di.append(price);
            di.append(quan);
            di.classList.add("priceStyling")
            list.append(di);
-           console.log(di);
-           console.log("DEBUG:  " + list);
+       
            di.style.border = "1px solid black";
            di.style.borderRadius = "10px";
            tdiv.innerText = "Total: $ " + total
+           sub.innerText = `Your grand total(including tax, ${CaTaxRate}%), is $${grandTotal}` 
+
            
+
 
 
     } else {
@@ -146,6 +161,12 @@ function addToCart() {
     function notFound() {
         alert("Item Has Not Been Found, Please Try Again!!")
     }
+
+    
+
+}
+
+function Update() {
 
 }
 
