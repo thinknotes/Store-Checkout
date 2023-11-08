@@ -80,15 +80,18 @@ table {
 
 .priceStyling {
     display: flex;
-    justify-content: space-between;
-    padding: 0px 5px;
+    justify-content: space-around;
+
+}
+
+.style {
+    display: flex;
+    justify-content: space-around;
 }
 
 .header {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
+    
 }
 
-/* p{
-    border: 1px solid black;
-} */

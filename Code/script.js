@@ -74,19 +74,18 @@ const items = {
 
 
 
-const cartbutton = document.getElementById("add");
-const cart = [];
+var cartbutton = document.getElementById("add");
+var cart = [];
 var  total = document.getElementById("total");
-// total * 9.25
-const barcrode = document.getElementById("barcodenum");
-const quantity = document.getElementById("quannum");
+var barcrode = document.getElementById("barcodenum");
+var quantity = document.getElementById("quannum");
   
-const div = document.getElementById("item");
-const item = document.getElementById("items");
-const price = document.getElementById("price");
-const q = document.getElementById("q");
-const list  = document.getElementById("list");
-const CaTaxRate = 9.25;
+var div = document.getElementById("item");
+var item = document.getElementById("items");
+var price = document.getElementById("price");
+var q = document.getElementById("q");
+var list  = document.getElementById("list");
+const CaTaxRate = 1.0925;
 
 function addToCart() {
    
@@ -94,55 +93,63 @@ function addToCart() {
     var quan = quantity.value;
     var ip = document.createElement("p");
     var di = document.createElement("div");
-    var listitem = document.createElement("div");
-    var button = document.createElement("button");
-    // var total = document.createElement("h2");
     var tdiv = document.getElementById("totaldiv");
     var sub = document.getElementById("subtotal");
-    var allItems = cart.querySeclector
-   
 
-    for(let i = 0; i < allItems.length; i++) {
-        if (allItems[i] === cart) {
 
-        } else {
-
-        }
-    }
-     
       
     if (items.hasOwnProperty(barcodeNum)) {
 
+           
 
-
-           let item = items[barcodeNum]
+           let item = items[barcodeNum];
+           let itemToUpdate = Update(item);
            var price = document.createElement("p");
            var product = document.createElement("p");
            var cartquan = document.createElement("p");
            var grandTotal = document.createElement("h2");
+           price.innerText = item.price;
+           product.innerText  = item.name;
+           cartquan.innerText  = quan;
+           
+           if (itemToUpdate) {
+            console.log(itemToUpdate);
+             let itemQuan = itemToUpdate.querySelector(".userquanity")
+             itemQuan.innerText = parseFloat(itemQuan.innerText) + parseFloat(quan);
+             total += item.price * parseFloat(itemQuan.innerText);
+             grandTotal = parseFloat(total * CaTaxRate).toFixed(2);
+             tdiv.innerText = "Total: $ " + total
+             sub.innerText = `Your grand total(including tax, 9.25%, is $${grandTotal}` 
+             return;
+           }
+        
+
+      
 
 
            product.classList.add("cartstyling");
            price.classList.add("priceStyling");
-           price.innerText = item.price
-           product.innerText  = item.name
-           cartquan.innerText  = quan
-           total += parseFloat(item.price) * parseFloat(quan)
+           cartquan.classList.add("userquanity");
+          
+           total += parseFloat(item.price) * parseFloat(quan);
            console.log(total)
-           grandTotal = total * (CaTaxRate);
-
-
-           di.append(product);
-           di.append(price);
-           di.append(quan);
-           di.classList.add("priceStyling")
-           list.append(di);
-       
-           di.style.border = "1px solid black";
-           di.style.borderRadius = "10px";
-           tdiv.innerText = "Total: $ " + total
-           sub.innerText = `Your grand total(including tax, ${CaTaxRate}%), is $${grandTotal}` 
-
+           grandTotal = parseFloat(total * (CaTaxRate)).toFixed(2);
+           di.classList.add("itembox");
+           
+            di.append(product);
+            di.append(price);
+            di.append(cartquan);
+            di.classList.add("priceStyling");
+            price.classList.add("style");
+            product.classList.add("priceStyling");
+            list.append(di);
+            
+            
+        
+            di.style.border = "1px solid black";
+            di.style.borderRadius = "10px";
+            tdiv.innerText = "Total: $ " + total
+            sub.innerText = `Your grand total(including tax, 9.25%, is $${grandTotal}` 
            
 
 
@@ -163,13 +170,18 @@ function addToCart() {
     }
 
     
+   function Update(addedItem){
+      var boxes = document.querySelectorAll(".itembox");
 
+      for(let i = 0; i < boxes.length; i++) {
+            if (addedItem.name === boxes[i].querySelector(".cartstyling").innerText) {
+                 return boxes[i];
+            }
+      }
+   }
 }
 
-function Update() {
 
-}
 
 console.log("DEBUG: " + cart)
-// console.log("DEBUG: " + barcodeNum.value);
 cartbutton.addEventListener("click", addToCart);
