@@ -1,5 +1,5 @@
 
-//Items for 
+//Items for store
 const items = {
     "689145740844":{
         name: "JavaScript Textbook",
@@ -73,7 +73,7 @@ const items = {
 }
 
 
-
+//Variables needed for cart
 var cartbutton = document.getElementById("add");
 var cart = [];
 var  total = document.getElementById("total");
@@ -87,35 +87,43 @@ var q = document.getElementById("q");
 var list  = document.getElementById("list");
 const CaTaxRate = 1.0925;
 
+
+
+//AddToCart function 
 function addToCart() {
    
-    var barcodeNum = barcrode.value;
-    var quan = quantity.value;
-    var ip = document.createElement("p");
-    var di = document.createElement("div");
-    var tdiv = document.getElementById("totaldiv");
-    var sub = document.getElementById("subtotal");
+    var barcodeNum = barcrode.value; // takes the barcodenum from the scanner
+    var quan = quantity.value;       // takes the user qaunity
+    var ip = document.createElement("p");  
+    var di = document.createElement("div"); 
+    var tdiv = document.getElementById("totaldiv");  //total for products
+    var sub = document.getElementById("subtotal");  //total + tax for products
 
 
       
-    if (items.hasOwnProperty(barcodeNum)) {
+    if (items.hasOwnProperty(barcodeNum)) { //Check to see if product is know else will alert the user that product has not been found
 
            
 
-           let item = items[barcodeNum];
-           let itemToUpdate = Update(item);
+           let item = items[barcodeNum];   //Grab items from the objects
+           let itemToUpdate = Update(item); //Updates quanity when the users adds more
+           //Create items need for function 
            var price = document.createElement("p");
            var product = document.createElement("p");
            var cartquan = document.createElement("p");
            var grandTotal = document.createElement("h2");
+
+           //What itmes created equal to from objects
            price.innerText = item.price;
            product.innerText  = item.name;
-           cartquan.innerText  = quan;
+           cartquan.innerText  = quan;  
            
-           if (itemToUpdate) {
+           if (itemToUpdate) {    // Updates item in cart and return a new toal and grand total
             console.log(itemToUpdate);
-             let itemQuan = itemToUpdate.querySelector(".userquanity")
-             itemQuan.innerText = parseFloat(itemQuan.innerText) + parseFloat(quan);
+             let itemQuan = itemToUpdate.querySelector(".userquanity") 
+
+             //Converts total into a float and rounds the number to the second place in the decmial
+             itemQuan.innerText = parseFloat(itemQuan.innerText) + parseFloat(quan); 
              total += item.price * parseFloat(itemQuan.innerText);
              grandTotal = parseFloat(total * CaTaxRate).toFixed(2);
              tdiv.innerText = "Total: $ " + total
@@ -126,28 +134,25 @@ function addToCart() {
 
       
 
-
-           product.classList.add("cartstyling");
-           price.classList.add("priceStyling");
-           cartquan.classList.add("userquanity");
           
+           //Get total without any new qanity changes
            total += parseFloat(item.price) * parseFloat(quan);
            console.log(total)
            grandTotal = parseFloat(total * (CaTaxRate)).toFixed(2);
-           di.classList.add("itembox");
-           
-            di.append(product);
+    
+           // Add item to cart when user press the checkout button
+            di.append(product); 
             di.append(price);
             di.append(cartquan);
             di.classList.add("priceStyling");
-            price.classList.add("style");
-            product.classList.add("priceStyling");
             list.append(di);
             
             
-        
+          //Styles cart 
             di.style.border = "1px solid black";
             di.style.borderRadius = "10px";
+
+           //Total & Subtotal
             tdiv.innerText = "Total: $ " + total
             sub.innerText = `Your grand total(including tax, 9.25%, is $${grandTotal}` 
            
@@ -156,25 +161,25 @@ function addToCart() {
 
     } else {
         console.log("DEBUG: Items has NOT been found")
-        notFound()
+        notFound() //Alert if product has not been found
     }
      
     ip.innerText = items.name;
-    console.log("DEBUG BarcodeNum: " + barcodeNum)
+    // console.log("DEBUG BarcodeNum: " + barcodeNum)
     total.innerText = items.price
-    console.log(total)
+    // console.log(total)
      
-     
+     //Alert the user if product has not been found
     function notFound() {
         alert("Item Has Not Been Found, Please Try Again!!")
     }
 
-    
+    //Update the quanity for cart
    function Update(addedItem){
       var boxes = document.querySelectorAll(".itembox");
 
       for(let i = 0; i < boxes.length; i++) {
-            if (addedItem.name === boxes[i].querySelector(".cartstyling").innerText) {
+            if (addedItem.name === boxes[i].querySelector(".cartstyling")) {
                  return boxes[i];
             }
       }
@@ -183,5 +188,5 @@ function addToCart() {
 
 
 
-console.log("DEBUG: " + cart)
+//Makes cartbutton work when users clicks on it
 cartbutton.addEventListener("click", addToCart);
